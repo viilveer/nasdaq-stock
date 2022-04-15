@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  nasdaq-stocks:
+    container_name: nasdaq-stocks
+    image: nasdaq-stocks:0.0.1
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm run start
+    ports:
+      - 3000:3000
+    networks:
+      - app
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+networks:
+  app:
